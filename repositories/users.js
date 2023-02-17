@@ -13,4 +13,12 @@ class UsersRepository {
             fs.writeFileSync(this.filename, []);
         }
     }
+
+    async getAll() {
+        return JSON.parse(
+            await fs.promises.readFile(this.filename, {
+                encoding: 'utf8'
+            })
+        );
+    }
 }
