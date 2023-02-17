@@ -21,4 +21,11 @@ class UsersRepository {
             })
         );
     }
+
+    async create(attributes) {
+        const records = await this.getAll();
+        records.push(attributes);
+
+        await fs.promises.writeFile(this.filename, JSON.stringify(records));
+    }
 }
