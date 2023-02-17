@@ -1,9 +1,12 @@
 const express = require('express')
 const bodyParser = require('body-parser');
-const usersRepo = require('./repositories/users')
+const usersRepo = require('./repositories/users');
+const cookieSession = require('cookie-session');
+
 const app = express()
 const port = 3000
 
+app.use(cookieSession({ keys: ['kcnsjbdv123'] }));
 app.use(bodyParser.urlencoded({ extended: true }));
   
 app.listen(port, () => {
@@ -12,14 +15,15 @@ app.listen(port, () => {
 
 app.get('/', (req, res) => {
     res.send(`
-    <div>
-        <form method="POST">
-            <input name="email" type="email" placeholder="email" />
-            <input name="password" type="password" placeholder="password" />
-            <input name="passwordConfirmation" type="password" placeholder="passwordConfirmation" />
-            <button>Sign Up</button>
-        </form>
-    </div>
+        <div>
+            Your id is: ${req.session.userId}
+            <form method="POST">
+                <input name="email" type="email" placeholder="email" />
+                <input name="password" type="password" placeholder="password" />
+                <input name="passwordConfirmation" type="password" placeholder="passwordConfirmation" />
+                <button>Sign Up</button>
+            </form>
+        </div>
     `);
 });
 
@@ -33,5 +37,9 @@ app.post('/', async (req, res) => {
     if (password !== passwordConfirmation) {
         return res.send('Password must match');
     }
+
+    const user = await usersRepo.create({ email, password });
+    req.session.userId = user.id;
+    
     res.send('Account created');
 });
