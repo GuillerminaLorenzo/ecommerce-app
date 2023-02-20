@@ -13,7 +13,7 @@ app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
 
-app.get('/', (req, res) => {
+app.get('/signup', (req, res) => {
     res.send(`
         <div>
             Your id is: ${req.session.userId}
@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
     `);
 });
 
-app.post('/', async (req, res) => {
+app.post('/signup', async (req, res) => {
     const { email, password, passwordConfirmation } = req.body;
     console.log(req.body)
     const existingUser = await usersRepo.getOneBy({ email });
