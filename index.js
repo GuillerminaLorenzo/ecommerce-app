@@ -29,7 +29,6 @@ app.get('/signup', (req, res) => {
 
 app.post('/signup', async (req, res) => {
     const { email, password, passwordConfirmation } = req.body;
-    console.log(req.body)
     const existingUser = await usersRepo.getOneBy({ email });
     if (existingUser) {
         return res.send('Email in use');
@@ -60,3 +59,18 @@ app.get('/signin', (req, res) => {
         </div>
     `);
 });
+
+app.post('/signin', async (req, res) => {
+    const { email, password } = req.body;
+    const user = await usersRepo.getOneBy({ email });
+    if (!user) {
+        return res.send('Email not found');
+    }
+    if (user.password !== password) {
+        return res.send('Invalid password');
+    }
+
+    req.session.userId = user.id;
+    
+    res.send('Signed in');
+})
