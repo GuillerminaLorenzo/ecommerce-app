@@ -48,3 +48,15 @@ app.get('/signout', (req, res) => {
     req.session = null;
     res.send('Logged out')
 });
+
+app.get('/signin', (req, res) => {
+    res.send(`
+        <div>
+            <form method="POST">
+                <input name="email" type="email" placeholder="email" />
+                <input name="password" type="password" placeholder="password" />
+                <button>Sign In</button>
+            </form>
+        </div>
+    `);
+});
