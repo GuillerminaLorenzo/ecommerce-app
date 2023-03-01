@@ -1,5 +1,5 @@
 const express = require('express');
-const { validationResult } = require('express-validator');
+const { validatiorResult } = require('express-validator');
 const multer = require('multer');
 
 const productsRepo = require('../../repositories/products');
@@ -20,7 +20,7 @@ router.post('/admin/products/new',
     upload.single('image'),
     [requireTitle, requirePrice], 
     async (req, res) => {
-        const errors = validationResult(req);
+        const errors = validatiorResult(req);
 
         if (!errors.isEmpty()) {
             return res.send(newProductTemplate({ errors }));

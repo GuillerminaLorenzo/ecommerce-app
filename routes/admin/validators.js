@@ -5,12 +5,12 @@ module.exports = {
     requireTitle: check('title')
         .trim()
         .isLength({ min:5, max:40 })
-        .withMessage('no'),
+        .withMessage('Must be between 4 and 40 characters'),
     requirePrice: check('price')
         .trim()
         .toFloat()
         .isFloat({ min:1 })
-        .withMessage('no'),
+        .withMessage('Must be greater than 1'),
     requireEmail:  check('email')
         .trim()
         .normalizeEmail()
