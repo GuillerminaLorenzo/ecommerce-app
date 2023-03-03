@@ -36,7 +36,7 @@ module.exports = ({ items }) => {
             <div class="columns">
             <div class="column"></div>
             <div class="column is-four-fifths">
-                <h3 class="subtitle"><b>Shopping Cart</b></h3>
+                <h3 class="subtitle" id="cart-title"><b>Shopping Cart</b></h3>
                 <div>
                 ${renderedItems}
                 </div>
