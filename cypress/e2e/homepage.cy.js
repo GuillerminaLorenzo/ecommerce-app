@@ -25,4 +25,19 @@ describe('Home page', () => {
     cy.url().should("include", "/cart");
     cy.contains('h3[id=cart-title]', 'Shopping Cart');
   });
+
+  it('has cart in nav bar', () => {
+    cy.get('form[id=product-add-cart]')
+      .first()
+      .should('contain', 'Add to cart')
+      .click();
+
+    cy.get('h3[id=homepage-title]').click();
+
+    cy.get('a[id=homepage-cart]').should('contain', 'Cart');
+    cy.contains('Cart').click();
+
+    cy.location('href').should('include', 'cart')
+    cy.contains('h3[id=cart-title]', 'Shopping Cart');
+  });
 })
