@@ -1,11 +1,9 @@
-describe('template spec', () => {
+describe('Home page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:3000/')
   });
   
-  describe('My First Test', () => {
-    it('Does not do much!', () => {
-      expect(true).to.equal(true)
-    })
-  })
+  it('has a title', () => {
+    cy.get('h3[id=homepage-title]').should('contain', 'EComm');
+  });
 })
