@@ -34,8 +34,7 @@ describe('Home page', () => {
 
     cy.get('h3[id=homepage-title]').click();
 
-    cy.get('a[id=homepage-cart]').should('contain', 'Cart');
-    cy.contains('Cart').click();
+    cy.get('a[id=homepage-cart]').should('contain', 'Cart').click();
 
     cy.location('href').should('include', 'cart')
     cy.contains('h3[id=cart-title]', 'Shopping Cart');
