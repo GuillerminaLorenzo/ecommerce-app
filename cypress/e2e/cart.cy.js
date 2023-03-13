@@ -8,4 +8,8 @@ describe('Home page', () => {
   it('has a title', () => {
     cy.get('h3[id=cart-title]').should('contain', 'Shopping Cart');
   });
+  
+  it('has a product', () => {
+    cy.get('div[id=cart-item-0]').should('contain', '$');
+  });
 });
