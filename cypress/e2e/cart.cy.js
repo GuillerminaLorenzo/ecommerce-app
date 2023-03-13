@@ -12,4 +12,8 @@ describe('Home page', () => {
   it('has a product', () => {
     cy.get('div[id=cart-item-0]').should('contain', '$');
   });
+
+  it('has delete button', () => {
+    cy.get('form[id=cart-item-delete]').should('be.visible');
+  });
 });
